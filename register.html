@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Register page</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+<body>
+    <div id="content_container">
+        <div id="form_container">
+            <div id="form_header_container">
+                <h2 id="form_header"> MHM LIBRARY</h2><br>
+            </div>
+
+            <div id="form_content_container">
+                <form id="form_content_inner_container" name="submit-to-google-sheet">
+                    <input type="text" id="full_name" name="name" placeholder="Full name"><br><br>
+                    <input type="email" id="email" name="email" placeholder="Email"><br><br>
+                    <input type="password" id="password" name="password" placeholder=" Password"><br><br>
+
+                    <input type="number" id="favourite_song" name="phone" placeholder="Phone Numbers"><br><br>
+                    <input type="text" id="milk_before_cereal" name="subject" placeholder="favourite subject"><br><br>
+
+                    <div id="button_container">
+
+                        <button onclick="register()">Register</button>
+                    </div>
+                    <p>have an account? <a href="index.html">Login here</a></p>
+                    <span id="msg" style="visibility: hidden;">hello</span>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbydHg0xdbHyHKAbBitOmFDZ48h3XO4Qf7MwC3knuhlNrl8iINccCm-TCG7E_AedKKskgg/exec'
+    const form = document.forms['submit-to-google-sheet']
+
+    const msg = document.getElementById("msg")
+
+    form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+            .then(response => {
+                msg.innerHTML = "Message sent successfully"
+                setTimeout(function () {
+                    msg.innerHTML = ""
+                },)
+
+            })
+            .catch(error => console.error('Error!', error.message))
+    })
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+
+<script src="index.js"></script>
+<link rel="shortcut icon" href="mohammed/images/MOHAMMED HUSSENMOHAMMED SETUP.png" type="image/x-icon">
+
+</html>
