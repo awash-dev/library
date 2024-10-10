@@ -62,7 +62,7 @@ function register() {
       // DOne
       alert("sign up sucessfull");
 
-      window.location.assign("mohammed/home.html");
+      window.location.assign("home.html");
     })
     .catch(function (error) {
       // Firebase will use this to alert of its errors
